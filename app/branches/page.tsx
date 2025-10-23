@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import Sidebar from "../../components/layout/sidebar";
+import Sidebar from "../components/layout/sidebar";
 import { useRouter } from "next/navigation";
 
 // Helper to decode JWT and get role

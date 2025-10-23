@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import Sidebar from "../../components/layout/sidebar";
+import Sidebar from "../../app/components/layout/sidebar";
 import { useRouter } from "next/navigation";
 
 const AddPlanPage = () => {
