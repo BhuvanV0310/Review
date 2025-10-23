@@ -1,0 +1,21 @@
+{
+  "sentiment_counts": {
+    "neutral": 5
+  },
+  "by_category": {
+    "neutral": {
+      "Delivery": 1,
+      "Food": 1,
+      "Service": 2,
+      "Service, Premium": 1
+    }
+  },
+  "by_rating": {
+    "neutral": {
+      "1": 2,
+      "2": 1,
+      "4": 1,
+      "5": 1
+    }
+  }
+}

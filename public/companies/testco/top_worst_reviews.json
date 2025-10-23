@@ -1,0 +1,37 @@
+[
+  {
+    "branch": "North",
+    "rating": 1,
+    "text": "Food was awful, very disappointed",
+    "sentiment": null,
+    "sentiment_score": null
+  },
+  {
+    "branch": "West",
+    "rating": 2,
+    "text": "Not satisfied with the product quality",
+    "sentiment": null,
+    "sentiment_score": null
+  },
+  {
+    "branch": "East",
+    "rating": 3,
+    "text": "Delivery was late but support was helpful",
+    "sentiment": null,
+    "sentiment_score": null
+  },
+  {
+    "branch": "Central",
+    "rating": 5,
+    "text": "Great service, friendly staff",
+    "sentiment": null,
+    "sentiment_score": null
+  },
+  {
+    "branch": "Central",
+    "rating": 5,
+    "text": "Excellent experience overall!",
+    "sentiment": null,
+    "sentiment_score": null
+  }
+]
