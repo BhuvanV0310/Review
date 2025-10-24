@@ -20,6 +20,12 @@ model User {
   image         String?
   role          Role      @default(CUSTOMER)
   branchId      String?
+  
+  // Stripe Integration
+  stripeCustomerId String?   @unique
+  activePlanId     String?
+  activePlan       Plan?     @relation(fields: [activePlanId], references: [id], onDelete: SetNull)
+  
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
   
@@ -31,6 +37,7 @@ model User {
   sessions  Session[]
   
   @@index([email])
+  @@index([stripeCustomerId])
 }
 
 enum Role {
@@ -88,8 +95,16 @@ model Plan {
   description String
   features    String[]
   status      PlanStatus @default(ACTIVE)
+  
+  // Stripe Integration
+  stripePriceId String?  @unique
+  stripeProductId String? @unique
+  
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
+  
+  // Relations
+  users       User[]
   
   @@index([status])
 }
@@ -121,14 +136,23 @@ model Payment {
   id          String        @id @default(uuid())
   userId      String
   user        User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  planId      String?
   amount      Float
   status      PaymentStatus @default(PENDING)
+  
+  // Stripe Integration
+  stripePaymentIntentId String? @unique
+  stripeSessionId       String? @unique
+  
   planName    String?
+  metadata    Json?
+  
   createdAt   DateTime      @default(now())
   updatedAt   DateTime      @updatedAt
   
   @@index([userId])
   @@index([status])
+  @@index([stripeSessionId])
 }
 
 enum PaymentStatus {
