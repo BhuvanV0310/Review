@@ -1,0 +1,111 @@
+// This is your Prisma schema file
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// User model for authentication and role-based access
+model User {
+  id        String    @id @default(uuid())
+  email     String    @unique
+  password  String
+  name      String?
+  role      Role      @default(USER)
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  
+  // Relations
+  branches  Branch[]
+  payments  Payment[]
+  reviews   Review[]
+  
+  @@index([email])
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+// Subscription Plan model
+model Plan {
+  id          String   @id @default(uuid())
+  name        String
+  price       Float
+  description String
+  features    String[]
+  status      PlanStatus @default(ACTIVE)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  @@index([status])
+}
+
+enum PlanStatus {
+  ACTIVE
+  INACTIVE
+}
+
+// Branch model
+model Branch {
+  id          String   @id @default(uuid())
+  name        String
+  location    String?
+  address     String?
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  // Relations
+  reviews     Review[]
+  
+  @@index([userId])
+}
+
+// Payment model
+model Payment {
+  id          String        @id @default(uuid())
+  userId      String
+  user        User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  amount      Float
+  status      PaymentStatus @default(PENDING)
+  planName    String?
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  
+  @@index([userId])
+  @@index([status])
+}
+
+enum PaymentStatus {
+  PENDING
+  COMPLETED
+  CANCELLED
+  FAILED
+}
+
+// Review model for sentiment analysis
+model Review {
+  id          String   @id @default(uuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  branchId    String?
+  branch      Branch?  @relation(fields: [branchId], references: [id], onDelete: SetNull)
+  text        String   @db.Text
+  rating      Int?
+  sentiment   String?
+  category    String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  @@index([userId])
+  @@index([branchId])
+  @@index([sentiment])
+}
