@@ -218,7 +218,47 @@ STRIPE_WEBHOOK_SECRET="whsec_..."
 
 ---
 
-### 9. Start Development Server
+### 9. AI Review System Setup (Optional)
+
+For AI-powered sentiment analysis on customer reviews:
+
+#### Get API Keys
+
+**OpenAI** (Recommended for best accuracy):
+1. Go to https://platform.openai.com/api-keys
+2. Create new secret key
+3. Copy key (starts with `sk-`)
+
+**HuggingFace** (Free alternative):
+1. Go to https://huggingface.co/settings/tokens
+2. Create new token
+3. Copy token (starts with `hf_`)
+
+Update `.env`:
+```env
+OPENAI_API_KEY="sk-..."
+HF_ACCESS_TOKEN="hf_..."
+```
+
+> **Note**: Both keys are optional. Without them, the system uses keyword-based sentiment analysis (less accurate but functional).
+
+#### Test Review Submission
+
+```bash
+# Start dev server first
+npm run dev
+
+# In another terminal, submit test review
+curl -X POST http://localhost:3000/api/reviews \
+  -H "Content-Type: application/json" \
+  -d '{"text": "This product is amazing!", "rating": 5}'
+```
+
+**Status**: ⬜ Not Started | ⏳ In Progress | ✅ Complete
+
+---
+
+### 10. Start Development Server
 
 **Terminal 1** (App):
 ```bash
@@ -237,7 +277,7 @@ stripe listen --forward-to localhost:3000/api/stripe/webhook
 
 ---
 
-### 10. Test Complete Flow
+### 11. Test Complete Flow
 
 #### A. Test Authentication
 1. Go to http://localhost:3000/auth/login
@@ -254,18 +294,28 @@ stripe listen --forward-to localhost:3000/api/stripe/webhook
 7. Complete payment
 8. Verify redirect to success page
 
-#### C. Verify Database Updates
+#### C. Test Review System
+1. Go to http://localhost:3000/reviews
+2. Submit a review with positive text (e.g., "Excellent service!")
+3. Verify sentiment badge appears (POSITIVE/NEGATIVE/NEUTRAL)
+4. Logout and login as admin (`admin@test.com` / `admin123`)
+5. Go to `/reviews` - verify Analytics section appears with charts
+6. Submit more reviews with different sentiments to populate charts
+
+#### D. Verify Database Updates
 ```bash
 npm run db:studio
 ```
 - Check `Payment` table → Status should be `COMPLETED`
 - Check `User` table → `activePlanId` should be set
+- Check `Review` table → Reviews should have sentiment fields populated
 
-#### D. Test Admin Features
+#### E. Test Admin Features
 1. Logout
 2. Login with: `admin@test.com` / `admin123`
 3. Go to `/dashboard` - should see admin features
 4. Go to `/plans` - should see Add/Edit options
+5. Go to `/reviews` - should see Analytics dashboard
 
 **Status**: ⬜ Not Started | ⏳ In Progress | ✅ Complete
 
@@ -308,6 +358,15 @@ npm run db:studio
 - [ ] Sample data seeded
 - [ ] Prisma Studio accessible
 - [ ] Queries execute successfully
+
+### Review & Sentiment System
+- [ ] Can submit reviews at `/reviews`
+- [ ] Sentiment analysis runs automatically
+- [ ] Sentiment badges display correctly
+- [ ] Admin sees Analytics dashboard
+- [ ] Charts populate with review data
+- [ ] AI confidence scores visible
+- [ ] Rate limiting works (try 6 rapid submissions)
 
 ---
 
@@ -355,6 +414,19 @@ npm install
 npm run stripe:sync-plans
 ```
 
+### Issue: "Cannot find module 'recharts'"
+**Solution**:
+```bash
+npm install
+```
+
+### Issue: "AI sentiment analysis not working"
+**Solutions**:
+1. Check if `OPENAI_API_KEY` or `HF_ACCESS_TOKEN` is set
+2. Verify API keys are valid
+3. Check server logs for AI errors
+4. System will fall back to heuristic analysis if APIs fail
+
 ---
 
 ## 📚 Documentation Reference
@@ -366,6 +438,9 @@ npm run stripe:sync-plans
 | `DATABASE_SETUP.md` | PostgreSQL & Prisma configuration |
 | `MIGRATION_GUIDE.md` | Upgrade from demo to production |
 | `STRIPE_INTEGRATION_SUMMARY.md` | Quick reference for Stripe features |
+| `REVIEW_ANALYTICS_SETUP.md` | AI review system setup and usage |
+| `SENTIMENT_LOGIC.md` | Deep dive into sentiment analysis |
+| `REVIEW_SYSTEM_SUMMARY.md` | Review system architecture overview |
 
 ---
 
@@ -399,6 +474,8 @@ If all checkboxes are ✅, you have:
 - ✅ PostgreSQL database with Prisma
 - ✅ NextAuth authentication with RBAC
 - ✅ Stripe payment integration
+- ✅ AI-powered review & sentiment system
+- ✅ Admin analytics dashboard
 - ✅ Complete test data
 - ✅ Working webhook handling
 - ✅ Production-ready architecture

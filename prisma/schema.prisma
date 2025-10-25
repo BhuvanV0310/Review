@@ -173,10 +173,30 @@ model Review {
   rating      Int?
   sentiment   String?
   category    String?
+  // AI Sentiment fields (new)
+  sentimentScore   Float?
+  sentimentLabel   SentimentLabel?
+  feedbackCategory FeedbackCategory?
+  aiConfidence     Float?
+  analyzedAt       DateTime?
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
   
   @@index([userId])
   @@index([branchId])
   @@index([sentiment])
+  @@index([sentimentLabel])
+}
+
+enum SentimentLabel {
+  POSITIVE
+  NEGATIVE
+  NEUTRAL
+}
+
+enum FeedbackCategory {
+  PRODUCT
+  SERVICE
+  DELIVERY
+  OTHER
 }
