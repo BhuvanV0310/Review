@@ -1,0 +1,68 @@
+{
+  "sentiment_counts": {
+    "positive": 35186,
+    "negative": 3883,
+    "neutral": 1363
+  },
+  "by_category": {
+    "negative": {
+      "Books_5": 384,
+      "Clothing_Shoes_and_Jewelry_5": 359,
+      "Electronics_5": 398,
+      "Home_and_Kitchen_5": 384,
+      "Kindle_Store_5": 255,
+      "Movies_and_TV_5": 357,
+      "Pet_Supplies_5": 533,
+      "Sports_and_Outdoors_5": 421,
+      "Tools_and_Home_Improvement_5": 395,
+      "Toys_and_Games_5": 397
+    },
+    "neutral": {
+      "Books_5": 119,
+      "Clothing_Shoes_and_Jewelry_5": 98,
+      "Electronics_5": 206,
+      "Home_and_Kitchen_5": 119,
+      "Kindle_Store_5": 96,
+      "Movies_and_TV_5": 106,
+      "Pet_Supplies_5": 188,
+      "Sports_and_Outdoors_5": 152,
+      "Tools_and_Home_Improvement_5": 139,
+      "Toys_and_Games_5": 140
+    },
+    "positive": {
+      "Books_5": 3867,
+      "Clothing_Shoes_and_Jewelry_5": 3391,
+      "Electronics_5": 3384,
+      "Home_and_Kitchen_5": 3553,
+      "Kindle_Store_5": 4379,
+      "Movies_and_TV_5": 3125,
+      "Pet_Supplies_5": 3533,
+      "Sports_and_Outdoors_5": 3373,
+      "Tools_and_Home_Improvement_5": 3324,
+      "Toys_and_Games_5": 3257
+    }
+  },
+  "by_rating": {
+    "negative": {
+      "1.0": 670,
+      "2.0": 439,
+      "3.0": 540,
+      "4.0": 724,
+      "5.0": 1510
+    },
+    "neutral": {
+      "1.0": 147,
+      "2.0": 91,
+      "3.0": 127,
+      "4.0": 183,
+      "5.0": 815
+    },
+    "positive": {
+      "1.0": 1338,
+      "2.0": 1437,
+      "3.0": 3119,
+      "4.0": 7058,
+      "5.0": 22234
+    }
+  }
+}

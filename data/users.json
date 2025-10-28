@@ -1,0 +1,44 @@
+[
+  {
+    "email": "tester2@example.com",
+    "passwordHash": "9b8769a4a742959a2d0298c36fb70623f2dfacda8436237df08d8dfd5b37374c",
+    "role": "user",
+    "createdAt": "2025-10-09T05:57:10.932Z"
+  },
+  {
+    "email": "authtest2@example.com",
+    "passwordHash": "$2a$10$E7w5pkupPXnQF8JTeLdmeeINxbzOYr9SwZxREKcy41f8uq0W4Vg5W",
+    "role": "user",
+    "createdAt": "2025-10-09T06:00:46.633Z"
+  },
+  {
+    "email": "tanmay.stu1906@gmail.com",
+    "passwordHash": "$2a$10$F9aVwfg76yzq7xbw2XkpJ.QsbmM8QTmA0I9CVqiqN9FeyyDttJZJq",
+    "role": "user",
+    "createdAt": "2025-10-09T06:03:06.183Z"
+  },
+  {
+    "email": "vermatanmay661@gmail.com",
+    "passwordHash": "$2a$10$SC58rpMvrtMfYJrSKcNt3uFieShuPxCANIa7zGbeCtPmP1Iw.gcCW",
+    "role": "user",
+    "createdAt": "2025-10-10T18:56:21.358Z"
+  },
+  {
+    "email": "test-admin@example.com",
+    "passwordHash": "$2a$10$1CikbANryiOnIY6YvPwXJODE/CIAKqSnQRQe.o14YiicKlIytP5yO",
+    "role": "admin",
+    "createdAt": "2025-10-12T22:43:55.808Z"
+  },
+  {
+    "email": "user@example.com",
+    "passwordHash": "$2a$10$bOjAjmJ/1IPi36ZPSA4UDOzaON/rGGmEivnOIVRdsM12wrwVRnxRC",
+    "role": "user",
+    "createdAt": "2024-01-15T10:00:00.000Z"
+  },
+  {
+    "email": "admin@example.com",
+    "passwordHash": "$2a$10$xugzs1uiPlHLHemOEeMRYOskKdEbhbMm8mOHc.LSnTMXrZd8vG5o2",
+    "role": "admin",
+    "createdAt": "2024-01-15T10:00:00.000Z"
+  }
+]
