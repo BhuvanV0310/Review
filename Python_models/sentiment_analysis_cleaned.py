@@ -1,9 +1,14 @@
 import pandas as pd
 from textblob import TextBlob
+import argparse
 
 print("Starting sentiment analysis on cleaned text...")
 
-df = pd.read_csv('data_cleaned.csv')
+parser = argparse.ArgumentParser()
+parser.add_argument("--input", default="data_cleaned.csv")
+parser.add_argument("--output", default="data_with_sentiment_cleaned.csv")
+args = parser.parse_args([] if __name__ == "__main__" else None)
+df = pd.read_csv(args.input)
 print(f"Loaded {len(df)} rows.")
 
 def get_sentiment(text):
@@ -21,6 +26,6 @@ def classify_sentiment(score):
 
 df['sentiment'] = df['sentiment_score'].apply(classify_sentiment)
 
-df.to_csv('data_with_sentiment_cleaned.csv', index=False)
+df.to_csv(args.output, index=False)
 
 print("Sentiment analysis completed. Results saved to 'data_with_sentiment_cleaned.csv'.")
